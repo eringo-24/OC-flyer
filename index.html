@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>OCチラシ作成ツール</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@400;500;700;900&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<div class="grain"></div>
+
+<header class="top">
+  <div class="top-inner">
+    <div class="brand">
+      <span class="brand-mark">校</span>
+      <div class="brand-text">
+        <strong>OCチラシ作成ツール</strong>
+        <span>都道府県別オープンキャンパス告知チラシ ジェネレーター</span>
+      </div>
+    </div>
+    <div class="step-indicator" id="stepIndicator">
+      <span class="step-dot active" data-step="1">1</span>
+      <span class="step-line"></span>
+      <span class="step-dot" data-step="2">2</span>
+      <span class="step-line"></span>
+      <span class="step-dot" data-step="3">3</span>
+    </div>
+  </div>
+</header>
+
+<main class="wrap">
+
+  <!-- STEP 1 -->
+  <section class="panel" id="panel-1">
+    <div class="panel-head">
+      <span class="panel-no">01</span>
+      <div>
+        <h2>都道府県を選ぶ</h2>
+        <p class="sub">チラシを作成する都道府県を選択してください。掲載大学の候補を自動で読み込みます。</p>
+      </div>
+    </div>
+    <div class="pref-select-row">
+      <select id="prefSelect">
+        <option value="">都道府県を選択...</option>
+      </select>
+      <button class="btn btn-primary" id="loadPrefBtn" disabled>大学リストを読み込む →</button>
+    </div>
+    <p class="hint" id="prefHint"></p>
+  </section>
+
+  <!-- STEP 2 -->
+  <section class="panel hidden" id="panel-2">
+    <div class="panel-head">
+      <span class="panel-no">02</span>
+      <div>
+        <h2>掲載大学とOC情報を入力</h2>
+        <p class="sub">大学の追加・削除・並び替えができます。各大学の日程・学部情報を入力してください（優先順位：日程 &gt; 学部 &gt; キャンパス &gt; 対面/オンライン）。</p>
+      </div>
+    </div>
+
+    <div class="template-banner" id="templateBanner"></div>
+
+    <div id="uniList" class="uni-list"></div>
+
+    <button class="btn btn-ghost" id="addUniBtn">+ 大学を追加</button>
+
+    <div class="photo-note">
+      <strong>写真について：</strong>この版では文字情報のみを自動入力します。生成されたWordファイルに、各大学の写真（Pixta素材、命名規則：<code>〇〇大学_pixta_(素材番号)_L.jpg</code>）を手動で貼り付けてください。
+    </div>
+
+    <div class="panel-actions">
+      <button class="btn btn-text" id="backTo1Btn">← 都道府県選択に戻る</button>
+      <button class="btn btn-primary" id="toStep3Btn">チラシを生成 →</button>
+    </div>
+  </section>
+
+  <!-- STEP 3 -->
+  <section class="panel hidden" id="panel-3">
+    <div class="panel-head">
+      <span class="panel-no">03</span>
+      <div>
+        <h2>ダウンロード</h2>
+        <p class="sub">Wordファイルを生成しました。内容を確認し、写真の貼り付けと最終調整を行ってください。</p>
+      </div>
+    </div>
+    <div id="genStatus" class="gen-status"></div>
+    <div class="panel-actions">
+      <button class="btn btn-text" id="backTo2Btn">← 入力に戻る</button>
+      <button class="btn btn-primary" id="regenBtn">もう一度生成する</button>
+    </div>
+  </section>
+
+</main>
+
+<footer class="foot">
+  <p>OCチラシ作成ツール — GitHub Pages で動作する静的Webアプリ（サーバー不要）</p>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/pizzip@3.1.7/dist/pizzip.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/docxtemplater@3.44.0/js/docxtemplater.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>
